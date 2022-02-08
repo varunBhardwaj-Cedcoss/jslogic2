@@ -1,17 +1,26 @@
-
-function add(){
-     let tabel=document.getElementById('newData');
-    let row =tabel.insertRow(-1);
-    let cell1 =row.insertCell(0);
-    let cell2 = row.insertCell(1);
-    let cell3 = row.insertCell(2);
-    addData(cell1,cell2,cell3);
-}
-function addData(cell1,cell2,cell3){ 
+ var Prodobj = [];
+function fetc(){
     var prodId = document.getElementById('proi').value;
     var prodName = document.getElementById('pron').value;
     var prodPrice = document.getElementById('prop').value;
-    cell1.innerHTML=prodId;
-    cell2.innerHTML=prodName;
-    cell3.innerHTML=prodPrice;
+    add(prodId,prodName,prodPrice);
+}
+function add(prodId,prodName,prodPrice){
+   Prodobj.push({id:prodId,
+                name:prodName,
+                price:prodPrice}); 
+   display();
+}
+function display(){    
+     var size = Prodobj.length;
+     var k ='<tbody>';
+     for(let i=0;i<size;i++){
+         k+='<tr>';
+         k+='<td>'+Prodobj[i].id+'</td>';
+         k+='<td>'+Prodobj[i].name+'</td>';
+         k+='<td>'+Prodobj[i].price+'</td>';
+         k+='</tr>';
+     }
+     k+='</tbody>';
+     document.getElementById('tabelData').innerHTML=k;
 }
